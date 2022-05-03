@@ -38,7 +38,8 @@ export const PostPage = () => {
         },
         params.postID
       )
-      .then((data) => document.location.reload())
+      .then((data) => api.getComments(params.postID))
+      .then((data) => {setComments(data);event.target.new_comment.value=''})
       .catch((err) => alert("Заполните поле комментария"));
   };
 
