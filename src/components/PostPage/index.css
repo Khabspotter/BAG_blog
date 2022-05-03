@@ -1,0 +1,62 @@
+.page{
+    display:flex;
+    margin:0px 50px 0px 50px;
+    justify-content: space-around;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.post img{
+    max-width:800px;
+    margin-top: 20px;
+}
+.date {
+font-size: small;
+color: grey;
+}
+
+.page h1{
+    margin-bottom: 0px;
+}
+
+.author {
+    color:blue;
+    font-weight: 600;
+}
+
+.post{
+    max-width: 70%;
+}
+
+.comments p{
+    line-height: 30%;
+}
+
+.comments{
+    margin-top: 50px;
+    margin-bottom:20px;
+    padding: 30px;
+    border: 1px solid blue;
+    border-radius: 20px;
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+button {
+    background-color: white;
+    padding:15px;
+    font-size: 15px;
+    border: 1px rgb(188, 186, 186) solid;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover {
+    color: blue;
+    border-color: blue;
+}

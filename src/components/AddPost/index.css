@@ -1,0 +1,19 @@
+
+.create{
+    display:flex;
+    justify-content: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.create input{
+    width:500px;
+
+}
+
+.create form{
+    display:flex;
+    flex-direction: column;
+}
+
+.create button{
+    margin:30px;
+}
