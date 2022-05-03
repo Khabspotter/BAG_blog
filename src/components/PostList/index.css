@@ -1,0 +1,21 @@
+.postlist{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+    margin: 0px 200px;
+    width: auto;
+}
+
+.buttonBlock{
+    margin:50px 200px 50px 200px;
+}
+
+.numButton {
+    padding:20px;
+    margin: 2px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+

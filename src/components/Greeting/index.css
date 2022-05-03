@@ -1,0 +1,9 @@
+.greeting {
+    display:flex;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 200px;
+    line-height: 95%;
+
+}
