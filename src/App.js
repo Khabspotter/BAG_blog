@@ -8,6 +8,7 @@ import { AddPost } from "./components/AddPost";
 import api from "./utils/api";
 import { Routes, Route, Link } from "react-router-dom";
 import { PostPage } from "./components/PostPage";
+import PostContext from "./components/Contexts/postContext";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -28,27 +29,30 @@ function App() {
 
   return (
     <div>
-      <Header userInfo={userInfo} />
-      
-      <Routes>
-        <Route
-          path="/"
-          element={<div>
-            <Greeting />;
-            <PostList
-              mapPosts={posts}
-              like={like}
-              setLike={setLike}
-              userInfo={userInfo}
-            />
-            </div>
-          }
-        />
-        <Route path="create" element={<AddPost />} />
-        <Route path="posts/:postID" element={<PostPage />} />
-      </Routes>
+      <PostContext.Provider value={{ posts, setPosts }}>
+        
+        <Header userInfo={userInfo} />
 
-      <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={<div>
+              <Greeting />;
+              <PostList
+                mapPosts={posts}
+                like={like}
+                setLike={setLike}
+                userInfo={userInfo}
+              />
+            </div>
+            }
+          />
+          <Route path="create" element={<AddPost />} />
+          <Route path="posts/:postID" element={<PostPage />} />
+        </Routes>
+
+        <Footer />
+      </PostContext.Provider>
     </div>
   );
 }
