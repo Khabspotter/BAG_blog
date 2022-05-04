@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -15,9 +15,14 @@ import CardMedia from '@mui/material/CardMedia';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import PostContext from "../Contexts/postContext";
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
+
+  const { setPosts} = useContext(PostContext)
+
   const [liked, setLiked] = useState(postsKey.likes.length);
+  
   const navigate=useNavigate()
 
   const addLS = (key, value) => {
@@ -60,7 +65,9 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
     api
       .deletePosts(postsKey._id)
       .then((res) => {
-        document.location.reload();
+        setPosts((prevState) => {
+          return prevState.filter((item) => item._id !== postsKey._id )
+        })
       })
       .catch((err) => alert(err));
   };
