@@ -22,5 +22,5 @@ export const Header = ({ userInfo }) => {
         <p>{userInfo.about}</p>
       </div>
     </div>
-  );
-};
+  )
+}
