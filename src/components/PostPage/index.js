@@ -1,14 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../utils/api";
 import dayjs from "dayjs";
 import "./index.css";
 import TextField from "@mui/material/TextField";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import PostContext from "../Contexts/postContext";
+import IconButton from "@mui/material/IconButton";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import UserContext from "../Contexts/userContext";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const PostPage = () => {
+  const { userInfo, setUserInfo } = useContext(UserContext)
+  const { posts, setPosts } = useContext(PostContext)
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
   const params = useParams();
+  const navigate = useNavigate();
+  const { writeLS } = useLocalStorage();
+
+  const deletePost = () => {
+    api
+      .deletePosts(params.postID)
+      .then((res) => {
+        setPosts((prevState) => {
+          return prevState.filter((item) => item._id !== params.postID)
+        })
+        navigate('/')
+      })
+      .catch((err) => alert(err));
+  };
+
+  const addToFavorite = () => {
+    writeLS('favorites', params.itemID);
+};
 
   useEffect(() => {
     api
@@ -39,7 +65,7 @@ export const PostPage = () => {
         params.postID
       )
       .then((data) => api.getComments(params.postID))
-      .then((data) => {setComments(data);event.target.new_comment.value=''})
+      .then((data) => { setComments(data); event.target.new_comment.value = '' })
       .catch((err) => alert("Заполните поле комментария"));
   };
 
@@ -82,6 +108,10 @@ export const PostPage = () => {
               placeholder="Add your comment"
             />
             <button>Опубликовать</button>
+            {(userInfo._id == post?.author._id) && (<IconButton onClick={deletePost}>
+              <DeleteOutlinedIcon />
+            </IconButton>)}
+         
           </form>
         </div>
       </div>

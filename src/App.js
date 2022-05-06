@@ -6,9 +6,15 @@ import { Footer } from "./components/Footer";
 import { Greeting } from "./components/Greeting";
 import { AddPost } from "./components/AddPost";
 import api from "./utils/api";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { PostPage } from "./components/PostPage";
 import PostContext from "./components/Contexts/postContext";
+import UserContext from "./components/Contexts/userContext";
+
+
+import { Fragment } from 'react';
+import ScrollButton from './components/ScrollTop/ScrollButton';
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -30,14 +36,18 @@ function App() {
   return (
     <div>
       <PostContext.Provider value={{ posts, setPosts }}>
-        
+        <UserContext.Provider value={{userInfo, setUserInfo}}>
+
         <Header userInfo={userInfo} />
 
         <Routes>
           <Route
             path="/"
             element={<div>
-              <Greeting />;
+              <Greeting />
+              <Fragment>
+                <ScrollButton />
+              </Fragment>
               <PostList
                 mapPosts={posts}
                 like={like}
@@ -52,6 +62,7 @@ function App() {
         </Routes>
 
         <Footer />
+        </UserContext.Provider>
       </PostContext.Provider>
     </div>
   );
