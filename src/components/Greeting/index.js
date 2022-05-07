@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from '../Button';
 import './index.css'
 
-export const Greeting = () => {
+export const Greeting = ({switchTheme}) => {
   return (
     <div className='greeting'>
     <div>
@@ -11,6 +11,7 @@ export const Greeting = () => {
     </div>
     <div>
       <Button />
+      <button className='createButton'  onClick={switchTheme}>Switch Theme</button>
     </div>
     </div>
   )

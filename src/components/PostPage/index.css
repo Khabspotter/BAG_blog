@@ -1,26 +1,54 @@
 .page{
-    display:flex;
-    margin:0px 50px 0px 50px;
-    justify-content: space-around;
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+    padding:20px;
+    display:flex; 
+    gap: 30px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.postpage{ 
+    display: flex;
+justify-content: center;
+    } 
 
-.post img{
-    max-width:100%;
-    margin-top: 20px;
+.container{
+            display: table;
+        }
+
+.post {
+width: 550px;
+border-right: 1px rgb(204, 204, 204) solid ;
+padding-right: 20px;
+
+}
+
+.title{
+    font-size: x-large;
+    font-weight: 800;
+}
+.image {
+max-width:550px;
+margin-top:10px
+}
+
+.post_text {
+    font-size:15px;
 }
 .date {
-font-size: small;
+font-size: x-small;
 color: grey;
-}
-
-.page h1{
-    margin-bottom: 0px;
+margin: 0%;
 }
 
 .author {
     color:blue;
     font-weight: 600;
+    display: flex;
+
+}
+
+.author_name{
+font-size: small;
+margin:0%
 }
 
 .post{
@@ -31,32 +59,46 @@ color: grey;
     line-height: 30%;
 }
 
-.comments{
-    margin-top: 50px;
-    margin-bottom:20px;
-    padding: 30px;
-    border: 1px solid blue;
-    border-radius: 20px;
-}
 .avatar{
     width: 32px;
     height: 32px;
     border-radius: 50%;
     margin-right: 10px;
-    margin-top: 5px;
 }
 button {
-    background-color: white;
-    padding:15px;
-    font-size: 15px;
+    background-color: inherit;
+    padding:7px;
+    font-size: small;
+    margin:5px;
+    max-width: 150px;
     border: 1px rgb(188, 186, 186) solid;
     text-align: center;
     font-weight: 400;
     cursor: pointer;
     transition: 0.5s;
+    color:inherit
 }
 
 button:hover {
     color: blue;
     border-color: blue;
 }
+
+input{
+    width: 100%;
+    height: 20px;
+    font-family: inherit;
+    padding: 3px;
+    background-color: inherit;
+    color: inherit;
+}
+input:focus{
+    outline-color:blue;
+}
+
+.back{
+    width: 70px;
+    margin-top: 10px;
+
+}
+

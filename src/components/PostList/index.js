@@ -15,7 +15,11 @@ export const PostList = ({ mapPosts, like, setLike, userInfo }) => {
           key={i}
           onClick={() => {
             setButtonClick(i);
-            window.scrollTo(0, 0);
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            
+              });
           }}
         >
           {i}
@@ -35,7 +39,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo }) => {
     <div>
       <div className="postlist">
         {data.map((item) => (
-          <Post
+          <Post 
             key={item._id}
             postsKey={item}
             userInfo={userInfo}

@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import PostContext from "../Contexts/postContext";
 
+
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
 
   const { setPosts} = useContext(PostContext)
@@ -72,14 +73,23 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
 
 
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
+    <Card  sx={{ minWidth: 275 }}>
+    
+      <CardContent >
         <Typography sx={{ fontSize: 16 }} color="text.primary" gutterBottom >
-          <Link to={`posts/${postsKey._id}`}>{postsKey.title}</Link>
+          <Link style={{textDecoration:"none",
+                        color:"black",
+                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+                        fontSize: "20px"}}
+                to={`posts/${postsKey._id} `}>{postsKey.title}</Link>
         </Typography>
         <hr />
         <Typography variant="h9" component="div" color="text.secondary">
-          👤 {postsKey.author.name}
+          <Link style={{textDecoration:"none",
+                        color:"black",
+                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+                        fontSize: "20px"}}
+                to={`posts/${postsKey._id}/info`}> 👤 {postsKey.author.name} </Link>
         </Typography>
         <br />
         <CardMedia
