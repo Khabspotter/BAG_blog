@@ -1,4 +1,6 @@
 export const config = {
     url: 'https://api.react-learning.ru',
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRjNTBlNDdjNTdkOTMxNDI3MDM4MDgiLCJpYXQiOjE2NTA2MTIzNDIsImV4cCI6MTY4MjE0ODM0Mn0.QsG8ovE82bf3zCBhjPmlSFbya6K4_MloFkK-czGFodQ",
+
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlNzkwYTBjZGQ3ZDNmZDUyZjg1MGYiLCJpYXQiOjE2NTAzNTg1NDksImV4cCI6MTY4MTg5NDU0OX0.8efDFKmRpuhdYy0uUMVo88FJ5ULUB3ofe9ED5NijsVI",
+
 };

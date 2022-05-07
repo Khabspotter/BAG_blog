@@ -20,6 +20,7 @@ import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
 import { UserInfo } from "./components/UserInfo/UserInfo";
 
+
 function App() {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
@@ -30,10 +31,13 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
+
+  const getPost=()=>{api.getPosts().then((result) => {
+    setPosts(result.reverse());
+  }).catch(err=>alert(err))};
+
   useEffect(() => {
-    api.getPosts().then((result) => {
-      setPosts(result.reverse());
-    });
+    getPost()
   }, []);
 
   useEffect(() => {
@@ -41,6 +45,8 @@ function App() {
       setUserInfo(result);
     });
   }, []);
+
+
 
   return (
     <div>
@@ -64,12 +70,17 @@ function App() {
                     like={like}
                     setLike={setLike}
                     userInfo={userInfo}
+
+                    getPost={getPost}
+
                   />
                 </div>
                 }
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
+
+
               <Route path="posts/:postID/info" element={<UserInfo/>}/>
             </Routes>
 

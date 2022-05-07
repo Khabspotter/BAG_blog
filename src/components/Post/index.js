@@ -1,4 +1,4 @@
-import React, {  useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -8,20 +8,18 @@ import dayjs from "dayjs";
 import IconButton from "@mui/material/IconButton";
 import api from "../../utils/api";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import CardMedia from '@mui/material/CardMedia';
+import CardMedia from "@mui/material/CardMedia";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PostContext from "../Contexts/postContext";
 
-
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
-
-  const { setPosts} = useContext(PostContext)
+  const { setPosts } = useContext(PostContext);
 
   const [liked, setLiked] = useState(postsKey.likes.length);
-  
-  const navigate=useNavigate()
+
+  const navigate = useNavigate();
 
   const addLS = (key, value) => {
     const storage = JSON.parse(localStorage.getItem(key)) || [];
@@ -64,40 +62,46 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
       .deletePosts(postsKey._id)
       .then((res) => {
         setPosts((prevState) => {
-          return prevState.filter((item) => item._id !== postsKey._id )
-        })
+          return prevState.filter((item) => item._id !== postsKey._id);
+        });
       })
       .catch((err) => alert(err));
   };
 
-
-
   return (
-    <Card  sx={{ minWidth: 275 }}>
-    
-      <CardContent >
-        <Typography sx={{ fontSize: 16 }} color="text.primary" gutterBottom >
-          <Link style={{textDecoration:"none",
-                        color:"black",
-                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
-                        fontSize: "20px"}}
-                to={`posts/${postsKey._id} `}>{postsKey.title}</Link>
-        </Typography>
+    <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <div
+          onClick={() => navigate(`posts/${postsKey._id}`)}
+          style={{ cursor: "pointer" }}
+        >
+          <Typography sx={{ fontSize: 16 }} color="text.primary" gutterBottom>
+            {postsKey.title}
+          </Typography>
+        </div>
         <hr />
         <Typography variant="h9" component="div" color="text.secondary">
-          <Link style={{textDecoration:"none",
-                        color:"black",
-                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
-                        fontSize: "20px"}}
-                to={`posts/${postsKey._id}/info`}> 👤 {postsKey.author.name} </Link>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "grey",
+              fontFamily: "Geneva, Arial, Helvetica, sans-serif",
+              fontSize: "13px",
+            }}
+            to={`posts/${postsKey._id}/info`}
+          >
+            {" "}
+            👤 {postsKey.author.name}{" "}
+          </Link>
+
         </Typography>
         <br />
         <CardMedia
-        component="img"
-        height="auto"
-        image={postsKey.image}
-        alt="Изображение"
-      />
+          component="img"
+          height="auto"
+          image={postsKey.image}
+          alt="Изображение"
+        />
         <br />
         <Typography variant="body2">{postsKey.text}</Typography>
         <br />
@@ -110,7 +114,7 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
         </Typography>
         <br />
 
-        {isLiked  ? (
+        {isLiked ? (
           <IconButton onClick={removeLike}>
             <FavoriteIcon fontSize="small" />
             <p style={{ fontSize: "small" }}>{liked}</p>
@@ -118,16 +122,20 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
         ) : (
           <IconButton onClick={getLike}>
             <FavoriteBorderIcon fontSize="small" />
-            {(liked>0)&&(<p style={{ fontSize: "small" }}>{liked}</p>)}
+            {liked > 0 && <p style={{ fontSize: "small" }}>{liked}</p>}
           </IconButton>
         )}
-        {(userInfo._id == postsKey.author._id) && (<IconButton onClick={deletePost}>
-          <DeleteOutlinedIcon />
-        </IconButton>)}
-        {(postsKey.comments.length>0) &&(<IconButton onClick={()=>(navigate(`posts/${postsKey._id}`))}>
-        <ForumOutlinedIcon fontSize="small"/>
-        <p style={{ fontSize: "small" }}>{postsKey.comments.length}</p>
-        </IconButton>)}
+        {postsKey.comments.length > 0 && (
+          <IconButton onClick={() => navigate(`posts/${postsKey._id}`)}>
+            <ForumOutlinedIcon fontSize="small" />
+            <p style={{ fontSize: "small" }}>{postsKey.comments.length}</p>
+          </IconButton>
+        )}
+        {userInfo._id == postsKey.author._id && (
+          <IconButton onClick={deletePost}>
+            <DeleteOutlinedIcon />
+          </IconButton>
+        )}
       </CardContent>
     </Card>
   );
