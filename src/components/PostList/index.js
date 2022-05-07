@@ -26,6 +26,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
 
               behavior: "smooth",
             });
+
           }}
         >
           {i}
@@ -88,6 +89,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
 
   return (
     <div>
+
       <div className="postContainer">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="select">

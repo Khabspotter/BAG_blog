@@ -93,6 +93,7 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
             {" "}
             👤 {postsKey.author.name}{" "}
           </Link>
+
         </Typography>
         <br />
         <CardMedia

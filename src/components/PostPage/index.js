@@ -111,11 +111,13 @@ export const PostPage = () => {
                   </div>
                 </div>
                 <div>
+
                   {userInfo._id == post?.author._id && (
                     <IconButton onClick={deletePost} title="Удалить пост">
                       <DeleteOutlinedIcon />
                     </IconButton>
                   )}
+
                 </div>
               </div>
               <div>
