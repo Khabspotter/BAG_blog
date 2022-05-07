@@ -82,7 +82,6 @@ function App() {
 
 
               <Route path="posts/:postID/info" element={<UserInfo/>}/>
-
             </Routes>
 
             <Footer />
