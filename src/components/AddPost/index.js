@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import api from "../../utils/api";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+import PostContext from "../Contexts/postContext";
 
 export const AddPost = () => {
+
+  const { setPosts} = useContext(PostContext)
+
+
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +22,11 @@ export const AddPost = () => {
         image: image.value,
         text: description.value,
       })
-      .then((data) => navigate("/"))
+      .then(data => {
+        setPosts((prevState) => {
+            return [data, ...prevState]
+        })
+        navigate('/')})
       .catch((err) => alert("Заполните все поля"));
   };
 

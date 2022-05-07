@@ -3,6 +3,6 @@ import './index.css';
 
 export const Footer = () => {
   return (
-    <div className='footer'>©Vladimir Galkin</div>
+    <div className='footer'>©BAG</div>
   )
 }

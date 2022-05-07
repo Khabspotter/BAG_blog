@@ -1,4 +1,3 @@
-import { LinkedCameraSharp } from "@mui/icons-material";
 import React, { useState } from "react";
 import { Post } from "../Post";
 import "./index.css";

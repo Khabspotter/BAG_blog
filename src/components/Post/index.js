@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
+import React, {  useState, useContext } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import dayjs from "dayjs";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import api from "../../utils/api";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CardMedia from '@mui/material/CardMedia';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import PostContext from "../Contexts/postContext";
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
+
+  const { setPosts} = useContext(PostContext)
+
   const [liked, setLiked] = useState(postsKey.likes.length);
+  
   const navigate=useNavigate()
 
   const addLS = (key, value) => {
@@ -60,7 +62,9 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
     api
       .deletePosts(postsKey._id)
       .then((res) => {
-        document.location.reload();
+        setPosts((prevState) => {
+          return prevState.filter((item) => item._id !== postsKey._id )
+        })
       })
       .catch((err) => alert(err));
   };
