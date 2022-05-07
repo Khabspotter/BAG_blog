@@ -4,7 +4,7 @@ import { PostList } from "./components/PostList";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Greeting } from "./components/Greeting";
-import { AddPost } from "./components/AdddPost";
+import { AddPost } from "./components/AddPost";
 import api from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { PostPage } from "./components/PostPage";
