@@ -93,12 +93,14 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
       <div className="postContainer">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="select">
-            <select 
+            <select defaultValue='default'
               onChange={(event) => {
                 selectChanged(Number(event.target.value));
               }}
             >
-              <option  value="" disabled selected style={{display:'none'}}>Сортировать:</option>
+              <option value='default' disabled selected style={{ display: "none" }}>
+                Сортировать:
+              </option>
               <option value={1}>Наиболее популярные</option>
               <option value={2}>Самые комментируемые</option>
               <option value={3}>Сначала новые</option>
@@ -115,9 +117,10 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
                 isLiked={like?.includes(item._id)}
               />
             ))}
-          </div >
-          <div >
-          <div className="buttonBlock">{buttonBlock(mapPosts)}</div></div>
+          </div>
+          <div>
+            <div className="buttonBlock">{buttonBlock(mapPosts)}</div>
+          </div>
         </div>
 
         ))}
