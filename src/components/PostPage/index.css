@@ -8,6 +8,7 @@
 .postpage{ 
     display: flex;
 justify-content: center;
+max-width: 900px;
     } 
 
 .container{
@@ -43,12 +44,13 @@ margin: 0%;
     color:blue;
     font-weight: 600;
     display: flex;
-
+    margin: 5px;
 }
 
 .author_name{
 font-size: small;
-margin:0%
+margin:0%;
+cursor: pointer;
 }
 
 .post{
@@ -91,8 +93,10 @@ input{
     padding: 3px;
     background-color: inherit;
     color: inherit;
+
     border-radius:5px;
     border: 1px black solid;
+
 }
 input:focus{
     outline-color:blue;

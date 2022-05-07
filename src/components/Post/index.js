@@ -74,14 +74,21 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
 
   return (
     <Card  sx={{ minWidth: 275 }}>
-    
       <CardContent >
         <Typography sx={{ fontSize: 16 }} color="text.primary" gutterBottom >
-          <Link to={`posts/${postsKey._id}`}>{postsKey.title}</Link>
+          <Link style={{textDecoration:"none",
+                        color:"black",
+                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+                        fontSize: "17px"}}
+                to={`posts/${postsKey._id}`}>{postsKey.title}</Link>
         </Typography>
         <hr />
         <Typography variant="h9" component="div" color="text.secondary">
-          👤 {postsKey.author.name}
+          <Link style={{textDecoration:"none",
+                        color:"grey",
+                        fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+                        fontSize: "13px"}}
+                to={`posts/${postsKey._id}/info`}> 👤 {postsKey.author.name} </Link>
         </Typography>
         <br />
         <CardMedia
