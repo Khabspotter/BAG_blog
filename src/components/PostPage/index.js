@@ -103,8 +103,7 @@ export const PostPage = () => {
           >
             <TextField
               id="outlined-basic"
-              variant="filled"
-              color="blue"
+              variant="outlined"
               name="new_comment"
               placeholder="Add your comment"
             />
