@@ -18,7 +18,9 @@ export const PostPage = () => {
   const [comments, setComments] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
-  const { writeLS } = useLocalStorage();
+  
+
+
 
   const deletePost = () => {
     api
@@ -32,9 +34,7 @@ export const PostPage = () => {
       .catch((err) => alert(err));
   };
 
-  const addToFavorite = () => {
-    writeLS('favorites', params.itemID);
-};
+
 
   useEffect(() => {
     api
@@ -111,7 +111,7 @@ export const PostPage = () => {
             {(userInfo._id == post?.author._id) && (<IconButton onClick={deletePost}>
               <DeleteOutlinedIcon />
             </IconButton>)}
-         
+              
           </form>
         </div>
       </div>

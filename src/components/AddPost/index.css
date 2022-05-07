@@ -1,19 +1,26 @@
-
-.create{
-    display:flex;
+.create {
+    display: flex;
     justify-content: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.create input{
-    width:500px;
+
+.create input {
+    width: 500px;
+    border: 1px rgb(188, 186, 186) solid;
+    transition: 0.5s;
 
 }
 
-.create form{
-    display:flex;
+.create input:hover {
+    color: blue;
+    border-color: blue;
+}
+
+.create form {
+    display: flex;
     flex-direction: column;
 }
 
-.create button{
-    margin:30px;
+.create button {
+    margin: 30px;
 }
