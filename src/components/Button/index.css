@@ -1,0 +1,18 @@
+.createButton {
+    background-color: white;
+    padding:8px 17px;
+    font-size: 15px;
+    border: 1px rgb(188, 186, 186) solid;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.createButton:hover {
+    color: blue;
+    border-color: blue;
+}
