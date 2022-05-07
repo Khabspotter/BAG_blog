@@ -8,7 +8,11 @@
 .postpage{ 
     display: flex;
 justify-content: center;
-        margin: 10px;} 
+    } 
+
+.container{
+            display: table;
+        }
 
 .post {
 width: 550px;
@@ -62,7 +66,7 @@ margin:0%
     margin-right: 10px;
 }
 button {
-    background-color: white;
+    background-color: inherit;
     padding:7px;
     font-size: small;
     margin:5px;
@@ -72,6 +76,7 @@ button {
     font-weight: 400;
     cursor: pointer;
     transition: 0.5s;
+    color:inherit
 }
 
 button:hover {
@@ -84,6 +89,8 @@ input{
     height: 20px;
     font-family: inherit;
     padding: 3px;
+    background-color: inherit;
+    color: inherit;
 }
 input:focus{
     outline-color:blue;
@@ -91,7 +98,6 @@ input:focus{
 
 .back{
     width: 70px;
-    margin-left: 20%;
     margin-top: 10px;
 
 }
