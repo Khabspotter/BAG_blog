@@ -19,11 +19,16 @@
 }
 
 .links button {
-  border: none;
+  border: 1px rgb(188, 186, 186) solid;
   background-color: white;
   color: blue;
   cursor: pointer;
   font-size: medium;
   font-weight: 600;
   margin-left: 15px;
+}
+
+.links button:hover {
+  color: blue;
+  border-color: blue;
 }
