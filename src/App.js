@@ -29,10 +29,12 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
+  const getPost=()=>{api.getPosts().then((result) => {
+    setPosts(result.reverse());
+  }).catch(err=>alert(err))};
+
   useEffect(() => {
-    api.getPosts().then((result) => {
-      setPosts(result.reverse());
-    });
+    getPost()
   }, []);
 
   useEffect(() => {
@@ -40,6 +42,8 @@ function App() {
       setUserInfo(result);
     });
   }, []);
+
+
 
   return (
     <div>
@@ -63,6 +67,7 @@ function App() {
                     like={like}
                     setLike={setLike}
                     userInfo={userInfo}
+                    getPost={getPost}
                   />
                 </div>
                 }

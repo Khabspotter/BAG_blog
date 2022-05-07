@@ -1,14 +1,10 @@
 .postlist{
+    max-width: 900px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 30px;
-    margin: 0px 200px;
     width: auto;
     
-}
-
-.buttonBlock{
-    margin:50px 200px 50px 200px;
 }
 
 .numButton {
@@ -19,4 +15,33 @@
     cursor: pointer;
 }
 
+.postContainer{
+    display: flex;
+    justify-content: center;
+}
+.buttonBlock{
+    max-width: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
+.buttonBlock button{
+    border-radius: 50%;
+    width:32px;
+    height: 32px;
+    text-decoration: dashed;
+    padding:0%
+}
+.select{
+    max-width: 900px;
+    display:flex;
+justify-content: flex-end;
+margin-bottom: 10px;
+}
+select:focus{
+    outline-color: blue;
+}
+select{
+    height:30px;
+    cursor: pointer
+}
