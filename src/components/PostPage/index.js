@@ -95,6 +95,7 @@ export const PostPage = () => {
               <div className="author">
                 <img className="avatar" src={`${post?.author.avatar}`} />
                 <div>
+
                   <Link to="info" style={{textDecoration:"none",
                                           color:"black",
                                           fontFamily:"Geneva, Arial, Helvetica, sans-serif",

@@ -121,13 +121,13 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
             {(liked>0)&&(<p style={{ fontSize: "small" }}>{liked}</p>)}
           </IconButton>
         )}
-        {(userInfo._id == postsKey.author._id) && (<IconButton onClick={deletePost}>
-          <DeleteOutlinedIcon />
-        </IconButton>)}
         {(postsKey.comments.length>0) &&(<IconButton onClick={()=>(navigate(`posts/${postsKey._id}`))}>
         <ForumOutlinedIcon fontSize="small"/>
         <p style={{ fontSize: "small" }}>{postsKey.comments.length}</p>
         </IconButton>)}
+      {(userInfo._id == postsKey.author._id) && (<IconButton onClick={deletePost}>
+        <DeleteOutlinedIcon />
+      </IconButton>)}
       </CardContent>
     </Card>
   );
