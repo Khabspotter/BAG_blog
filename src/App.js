@@ -4,7 +4,7 @@ import { PostList } from "./components/PostList";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Greeting } from "./components/Greeting";
-import { AddPost } from "./components/AddPost";
+import { AddPost } from "./components/AdddPost";
 import api from "./utils/api";
 import { Routes, Route } from "react-router-dom";
 import { PostPage } from "./components/PostPage";
@@ -18,6 +18,8 @@ import ScrollButton from './components/ScrollTop/ScrollButton';
 
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
+import { UserInfo } from "./components/UserInfo/UserInfo";
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -28,6 +30,7 @@ function App() {
   const switchTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
+
 
   const getPost=()=>{api.getPosts().then((result) => {
     setPosts(result.reverse());
@@ -67,13 +70,19 @@ function App() {
                     like={like}
                     setLike={setLike}
                     userInfo={userInfo}
+
                     getPost={getPost}
+
                   />
                 </div>
                 }
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
+
+
+              <Route path="posts/:postID/info" element={<UserInfo/>}/>
+
             </Routes>
 
             <Footer />

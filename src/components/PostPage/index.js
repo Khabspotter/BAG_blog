@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../../utils/api";
 import dayjs from "dayjs";
 import "./index.css";
@@ -95,7 +95,13 @@ export const PostPage = () => {
               <div className="author">
                 <img className="avatar" src={`${post?.author.avatar}`} />
                 <div>
-                  <p className="author_name">{post?.author.name}</p>
+
+                  <Link to="info" style={{textDecoration:"none",
+                                          color:"black",
+                                          fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+                                          }}>
+                          <p className="author_name">{post?.author.name}</p>
+                  </Link>
                   <p className="date">
                     {dayjs(post?.created_at).format("DD.MM.YYYY, HH:mm:ss")}
                   </p>

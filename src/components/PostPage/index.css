@@ -91,8 +91,10 @@ input{
     padding: 3px;
     background-color: inherit;
     color: inherit;
+
     border-radius:5px;
     border: 1px black solid;
+
 }
 input:focus{
     outline-color:blue;

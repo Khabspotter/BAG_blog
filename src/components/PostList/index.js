@@ -23,8 +23,10 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
             setButtonClick(i);
             window.scrollTo({
               top: 0,
+
               behavior: "smooth",
             });
+
           }}
         >
           {i}
@@ -87,6 +89,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
 
   return (
     <div>
+
       <div className="postContainer">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="select">
@@ -116,6 +119,9 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
           <div >
           <div className="buttonBlock">{buttonBlock(mapPosts)}</div></div>
         </div>
+
+        ))}
+
       </div>
     </div>
   );
