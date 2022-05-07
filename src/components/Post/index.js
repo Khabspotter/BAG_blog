@@ -79,15 +79,19 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
           <Link style={{textDecoration:"none",
                         color:"black",
                         fontFamily:"Geneva, Arial, Helvetica, sans-serif",
+
                         fontSize: "17px"}}
                 to={`posts/${postsKey._id}`}>{postsKey.title}</Link>
+
         </Typography>
         <hr />
         <Typography variant="h9" component="div" color="text.secondary">
           <Link style={{textDecoration:"none",
+
                         color:"grey",
                         fontFamily:"Geneva, Arial, Helvetica, sans-serif",
                         fontSize: "13px"}}
+
                 to={`posts/${postsKey._id}/info`}> 👤 {postsKey.author.name} </Link>
         </Typography>
         <br />
