@@ -122,9 +122,6 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
             <div className="buttonBlock">{buttonBlock(mapPosts)}</div>
           </div>
         </div>
-
-        ))}
-
       </div>
     </div>
   );
