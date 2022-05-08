@@ -1,0 +1,29 @@
+.edit {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.edit input {
+    width: 500px;
+    border: 1px rgb(188, 186, 186) solid;
+    transition: 0.5s;
+
+}
+
+.edit input:hover {
+    color: blue;
+    border-color: blue;
+}
+
+.edit form {
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.edit button {
+    text-align: center;
+    margin:30px;
+}

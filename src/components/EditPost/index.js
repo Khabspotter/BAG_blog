@@ -23,7 +23,7 @@ export const EditPost = () => {
             text,
         })
             .then((data) => {
-                setPosts((prevState) => {
+                setPosts((prevState) => {console.log(data, ...prevState)
                     return [data, ...prevState]
                 })
                 navigate('/')
@@ -40,16 +40,6 @@ export const EditPost = () => {
 
         })
     }, [])
-
-
-
-
-
-
-
-
-
-
     return (
         <Grid container flexDirection='column' spacing='10'>
             <Grid item>

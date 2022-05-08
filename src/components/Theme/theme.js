@@ -22,7 +22,7 @@ export const darkTheme = {
      color: ${props => props.theme.headingColor};
    }
    .createButton{
-    background: ${props => props.theme.body};
+    background: white;
     color: black;
     transition: .3s ease; 
    }
