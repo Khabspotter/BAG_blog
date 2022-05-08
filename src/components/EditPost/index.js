@@ -23,8 +23,8 @@ export const EditPost = () => {
             text,
         })
             .then((data) => {
-                setPosts((prevState) => {console.log(data, ...prevState)
-                    return [data, ...prevState]
+                setPosts((prevState) => {
+                    return [data, ...prevState.filter((el)=>el._id!==data._id)]
                 })
                 navigate('/')
             })
