@@ -79,7 +79,7 @@ function App() {
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
-              <Route path="posts/:postID/edit" getPost={getPost} element={<EditPost />} />
+              <Route path="posts/:postID/edit" element={<EditPost />} />
 
 
               <Route path="posts/:postID/info" element={<UserInfo/>}/>
