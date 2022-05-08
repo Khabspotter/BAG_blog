@@ -34,7 +34,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
     return buttonList;
   };
-
+  
   const mostLiked = () => {
     setPosts(
       mapPosts.sort(function (a, b) {

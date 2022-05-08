@@ -23,7 +23,6 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [like, setLike] = useState(JSON.parse(localStorage.getItem("likes")));
-  // const [editPost, setEditPost] = useState([])
 
   const [theme, setTheme] = useState("light");
   const switchTheme = () => {
@@ -42,12 +41,6 @@ function App() {
   useEffect(() => {
     getPost();
   }, []);
-
-// useEffect(()=> {
-//   api.editPosts().then((res) => {
-//     setEditPost(res)
-//   })
-// },[])
 
   useEffect(() => {
     api
@@ -81,14 +74,13 @@ function App() {
                       like={like}
                       setLike={setLike}
                       userInfo={userInfo}
-                      getPost={getPost}
                     />
                   </div>
                 }
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
-              <Route path="posts/:postID/edit" element={<EditPost />} />
+              <Route path="posts/:postID/edit" getPost={getPost} element={<EditPost />} />
 
 
               <Route path="posts/:postID/info" element={<UserInfo/>}/>
