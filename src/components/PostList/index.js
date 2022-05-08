@@ -34,7 +34,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
     return buttonList;
   };
-  
+
   const mostLiked = () => {
     setPosts(
       mapPosts.sort(function (a, b) {
@@ -52,7 +52,12 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     navigate("/");
   };
   const newAdded = () => {
-    getPost();
+    api
+      .getPosts()
+      .then((result) => {
+        setPosts(result.reverse());
+      })
+      .catch((err) => alert(err));
   };
   const oldAdded = () => {
     api
@@ -80,12 +85,20 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
   }
 
-  const myPosts = () => {
-    setPosts(mapPosts.filter((el) => userInfo._id == el.author._id));
+  const myPosts = () => {api
+    .getPosts()
+    .then((result) => {
+      setPosts(result.reverse().filter((el) => userInfo._id == el.author._id));
+    })
+    .catch((err) => alert(err));
   };
 
-  const iLiked = () => {
-    setPosts(mapPosts.filter((el) => el.likes.includes(userInfo._id)));
+  const iLiked = () => {api
+    .getPosts()
+    .then((result) => {
+      setPosts(result.reverse().filter((el) => el.likes.includes(userInfo._id)));
+    })
+    .catch((err) => alert(err));
   };
 
   const pageLimit = buttonClick * 12;
