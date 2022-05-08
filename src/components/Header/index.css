@@ -3,6 +3,8 @@
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px grey solid;
+  padding:10px;
+  height:40px
 }
 
 .logo {
@@ -31,4 +33,27 @@
 .links button:hover {
   color: blue;
   border-color: blue;
+}
+.user img{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.user{
+  display: flex;
+  cursor: pointer;
+background-color: rgb(255, 255, 255);
+padding: 7px;
+border-radius: 20px;
+}
+.user:hover{
+  background-color: rgb(199, 205, 255);
+}
+.userInfo{
+  margin-top: 5px;
+}
+h1{
+  font-family:cursive;
+  font-weight: 900;
 }
