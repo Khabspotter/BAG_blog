@@ -34,7 +34,7 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
     return buttonList;
   };
-  
+
   const mostLiked = () => {
     setPosts(
       mapPosts.sort(function (a, b) {
@@ -52,7 +52,12 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     navigate("/");
   };
   const newAdded = () => {
-    getPost();
+    api
+      .getPosts()
+      .then((result) => {
+        setPosts(result.reverse());
+      })
+      .catch((err) => alert(err));
   };
   const oldAdded = () => {
     api
