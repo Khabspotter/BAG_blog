@@ -17,6 +17,7 @@ import ScrollButton from "./components/ScrollTop/ScrollButton";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
 import { UserInfo } from "./components/UserInfo/UserInfo";
+import { EditPost } from "./components/EditPost";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -72,13 +73,16 @@ function App() {
                       like={like}
                       setLike={setLike}
                       userInfo={userInfo}
-                      getPost={getPost}
                     />
                   </div>
                 }
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
+              <Route path="posts/:postID/edit" element={<EditPost />} />
+
+
+              <Route path="posts/:postID/info" element={<UserInfo/>}/>
               <Route path="users/:userID" element={<UserInfo />} />
             </Routes>
             <Footer />
