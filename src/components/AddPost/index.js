@@ -33,7 +33,7 @@ export const AddPost = () => {
   return (
     <div className="create">
       <form onSubmit={handleSubmit}>
-        <h3>Insert image link:</h3>
+        <h3>Вставьте ссылку на страницу:</h3>
 
         <TextField
           id="outlined-basic"
@@ -41,7 +41,7 @@ export const AddPost = () => {
           name="image"
           placeholder="Ссылка на картинку"
         />
-        <h3>Add a title:</h3>
+        <h3>Заголовок поста:</h3>
 
         <TextField
           id="outlined-basic"
@@ -49,7 +49,7 @@ export const AddPost = () => {
           name="name"
           placeholder="Заголовок"
         />
-        <h3>Add a description:</h3>
+        <h3>Описание поста:</h3>
 
         <TextField
           id="outlined-basic"
@@ -57,7 +57,7 @@ export const AddPost = () => {
           name="description"
           placeholder="Текст"
         />
-        <button className="createButton">Create post</button>
+        <button className="createButton">Создать пост</button>
       </form>
     </div>
   );

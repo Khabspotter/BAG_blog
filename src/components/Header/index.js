@@ -7,19 +7,14 @@ export const Header = ({ userInfo }) => {
   return (
     <div className="header">
       <div className="logo">
-        <h1 onClick={()=>navigate('/')}>Rettiwt</h1>
+        <h1 onClick={()=>navigate('/')}>BAG-blog</h1>
       </div>
-      <div className="links">
-        <button onClick={()=>navigate('/')}>Home</button>
-        <button>Rettiwt Docs</button>
-        <a href="https://github.com/Khabspotter/" target="_blank">
-          <button>GitHub</button>
-        </a>
-      </div>
-      <div style={{ lineHeight: "0%", cursor:'pointer'}}>
-        <p style={{ color: "blue", fontWeight: "600", fontSize:'18px'}}>{userInfo.name}</p>
-        <p style={{color:'grey'}}>{userInfo.email}</p>
-        <p>{userInfo.about}</p>
+      <div className='user' onClick={()=>navigate(`users/${userInfo._id}`)}>
+        <img src={userInfo.avatar}/>
+      <div className='userInfo'>
+        <div style={{ color: "blue", fontWeight: "600", fontSize:'14px'}}>{userInfo.name}</div>
+        <div style={{color:'grey'}}>{userInfo.email}</div>
+        </div>
       </div>
     </div>
   )
