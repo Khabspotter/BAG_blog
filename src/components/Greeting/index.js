@@ -6,12 +6,12 @@ export const Greeting = ({switchTheme}) => {
   return (
     <div className='greeting'>
     <div>
-      <h2>Welcome to Our Image Board!</h2>
-      <p>We're stoked that you're here.😃</p>
+      <h2>Добро пожаловать в BAG-блог!</h2>
+      <p>Изучайте, развлекайтесь, создавайте, креативьте! 😃</p>
     </div>
     <div>
       <Button />
-      <button className='createButton'  onClick={switchTheme}>Switch Theme</button>
+      <button className='createButton'  onClick={switchTheme}>Сменить тему</button>
     </div>
     </div>
   )

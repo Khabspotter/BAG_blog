@@ -5,5 +5,7 @@
     align-items: center;
     margin: 20px 200px;
     line-height: 95%;
-
+    background-color: rgb(199, 205, 255);
+padding:30px;
+border-radius: 50px;
 }
