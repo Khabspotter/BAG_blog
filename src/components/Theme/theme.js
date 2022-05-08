@@ -40,4 +40,5 @@ export const darkTheme = {
     color: ${props => props.theme.textColor};
     transition: .3s ease; 
    }
+ 
    `

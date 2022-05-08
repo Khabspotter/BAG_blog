@@ -123,9 +123,10 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
             </div>
           </div>
           <div className="postlist">
-            {data.map((item) => (
+            {data?.map((item, index) => (
               <Post
-                key={item._id}
+              
+                key={index}
                 postsKey={item}
                 userInfo={userInfo}
                 setLike={setLike}
