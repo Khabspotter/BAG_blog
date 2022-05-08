@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import UserContext from "../Contexts/userContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import EditIcon from '@mui/icons-material/Edit';
 
 export const PostPage = () => {
   const { userInfo, setUserInfo } = useContext(UserContext);
@@ -31,9 +32,13 @@ export const PostPage = () => {
       .catch((err) => alert(err));
   };
 
-  const addToFavorite = () => {
-    writeLS("favorites", params.itemID);
-  };
+
+
+  const navigateToEditPage = () => {
+    navigate(`edit`)
+  }
+
+
 
   useEffect(() => {
     api
@@ -116,6 +121,13 @@ export const PostPage = () => {
                       <DeleteOutlinedIcon />
                     </IconButton>
                   )}
+
+                  {userInfo._id == post?.author._id && (
+                    <IconButton onClick={navigateToEditPage}>
+                      <EditIcon />
+                    </IconButton>
+                  )}
+
                 </div>
               </div>
               <div>

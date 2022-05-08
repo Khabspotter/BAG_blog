@@ -21,6 +21,19 @@ class Api {
     }).then(onResponce);
   }
 
+
+  editPosts(postID, freshItem) {
+    return fetch(`${this._url}/posts/${postID}`, {
+        method: 'PATCH',
+        headers: {
+            authorization: `Bearer ${this._token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(freshItem),
+    }).then(onResponce);
+}
+
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: {

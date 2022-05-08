@@ -19,12 +19,14 @@ import ScrollButton from './components/ScrollTop/ScrollButton';
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
 import { UserInfo } from "./components/UserInfo/UserInfo";
+import { EditPost } from "./components/EditPost";
 
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [like, setLike] = useState(JSON.parse(localStorage.getItem("likes")));
+  // const [editPost, setEditPost] = useState([])
 
   const [theme, setTheme] = useState("light");
   const switchTheme = () => {
@@ -39,6 +41,12 @@ function App() {
   useEffect(() => {
     getPost()
   }, []);
+
+// useEffect(()=> {
+//   api.editPosts().then((res) => {
+//     setEditPost(res)
+//   })
+// },[])
 
   useEffect(() => {
     api.getUserInfo().then((result) => {
@@ -79,6 +87,7 @@ function App() {
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
+              <Route path="posts/:postID/edit" element={<EditPost />} />
 
 
               <Route path="posts/:postID/info" element={<UserInfo/>}/>
