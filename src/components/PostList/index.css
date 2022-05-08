@@ -47,3 +47,19 @@ select{
     height:30px;
     cursor: pointer
 }
+.filter{
+    display: flex;
+    justify-content: flex-end;
+}
+.link{font-size: medium;
+    margin-top: 5px;
+    color: blue;
+    font-weight: 700;
+    opacity: 65%;
+    cursor: pointer;
+    margin-right: 20px;
+    transition: 0.5s;
+}
+.link:hover{
+    opacity: 100%;
+}

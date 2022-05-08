@@ -9,13 +9,14 @@ import IconButton from "@mui/material/IconButton";
 import api from "../../utils/api";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CardMedia from "@mui/material/CardMedia";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PostContext from "../Contexts/postContext";
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
   const { setPosts } = useContext(PostContext);
+  const params=useParams()
 
   const [liked, setLiked] = useState(postsKey.likes.length);
 
@@ -88,7 +89,7 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
               fontFamily: "Geneva, Arial, Helvetica, sans-serif",
               fontSize: "13px",
             }}
-            to={`posts/${postsKey._id}/info`}
+            to={`users/${postsKey.author._id}`}
           >
             {" "}
             👤 {postsKey.author.name}{" "}

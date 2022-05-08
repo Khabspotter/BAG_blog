@@ -58,10 +58,6 @@ cursor: pointer;
     max-width: 70%;
 }
 
-.comments p{
-    line-height: 30%;
-}
-
 .avatar{
     width: 32px;
     height: 32px;
@@ -109,3 +105,7 @@ input:focus{
 
 }
 
+.comments{
+    max-width: 200px;
+    word-break:break-all;
+}
