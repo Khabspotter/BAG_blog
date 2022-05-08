@@ -1,4 +1,26 @@
-.button__user{
-    display: flex;
+.usercard{
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+    padding:20px;
+    max-width: 600px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.userpage{
     align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.buttons{
+    display: flex;
+    width: 640px;
+    margin-top: 10px;
+}
+.username{
+    font-size: x-large;
+    font-weight: 800
+}
+.desc{
+    font-weight: 700;
+    margin-right: 10px;
 }

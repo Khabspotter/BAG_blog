@@ -100,7 +100,7 @@ export const PostPage = () => {
                   <div>
                     <div
                       className="author_name"
-                      onClick={() => navigate("info")}
+                      onClick={() => navigate(`/users/${post?.author._id}`)}
                     >
                       {post?.author.name}
                     </div>
@@ -111,13 +111,11 @@ export const PostPage = () => {
                   </div>
                 </div>
                 <div>
-
                   {userInfo._id == post?.author._id && (
                     <IconButton onClick={deletePost} title="Удалить пост">
                       <DeleteOutlinedIcon />
                     </IconButton>
                   )}
-
                 </div>
               </div>
               <div>
@@ -132,7 +130,7 @@ export const PostPage = () => {
                     <div className="author">
                       <img className="avatar" src={`${el.author.avatar}`} />
                       <div>
-                        <div className="author_name">{el.author.name}</div>
+                        <div className="author_name" onClick={() => navigate(`/users/${el?.author._id}`)}>{el.author.name}</div>
                         <div className="date">
                           {dayjs(el.created_at).format("DD.MM.YYYY, HH:mm:ss")}
                         </div>

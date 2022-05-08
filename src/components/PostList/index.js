@@ -26,7 +26,6 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
 
               behavior: "smooth",
             });
-
           }}
         >
           {i}
@@ -81,6 +80,14 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
   }
 
+  const myPosts = () => {
+    setPosts(mapPosts.filter((el) => userInfo._id == el.author._id));
+  };
+
+  const iLiked = () => {
+    setPosts(mapPosts.filter((el) => el.likes.includes(userInfo._id)));
+  };
+
   const pageLimit = buttonClick * 12;
   let data = null;
   buttonClick == 1
@@ -89,23 +96,31 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
 
   return (
     <div>
-
       <div className="postContainer">
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div className="select">
-            <select defaultValue='default'
-              onChange={(event) => {
-                selectChanged(Number(event.target.value));
-              }}
-            >
-              <option value='default' disabled selected style={{ display: "none" }}>
-                Сортировать:
-              </option>
-              <option value={1}>Наиболее популярные</option>
-              <option value={2}>Самые комментируемые</option>
-              <option value={3}>Сначала новые</option>
-              <option value={4}>Сначала старые</option>
-            </select>
+          <div className="filter">
+            <div className="link" onClick={() => myPosts()}>
+              Мои посты
+            </div>
+            <div className="link" onClick={() => iLiked()}>
+              Мне понравилось
+            </div>
+            <div className="select">
+              <select
+                defaultValue="default"
+                onChange={(event) => {
+                  selectChanged(Number(event.target.value));
+                }}
+              >
+                <option value="default" disabled style={{ display: "none" }}>
+                  Сортировать:
+                </option>
+                <option value={1}>Наиболее популярные</option>
+                <option value={2}>Самые комментируемые</option>
+                <option value={3}>Сначала новые</option>
+                <option value={4}>Сначала старые</option>
+              </select>
+            </div>
           </div>
           <div className="postlist">
             {data.map((item) => (

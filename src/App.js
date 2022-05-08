@@ -11,15 +11,12 @@ import { PostPage } from "./components/PostPage";
 import PostContext from "./components/Contexts/postContext";
 import UserContext from "./components/Contexts/userContext";
 
-
-import { Fragment } from 'react';
-import ScrollButton from './components/ScrollTop/ScrollButton';
-
+import { Fragment } from "react";
+import ScrollButton from "./components/ScrollTop/ScrollButton";
 
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
 import { UserInfo } from "./components/UserInfo/UserInfo";
-
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -31,22 +28,27 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
-
-  const getPost=()=>{api.getPosts().then((result) => {
-    setPosts(result.reverse());
-  }).catch(err=>alert(err))};
+  const getPost = () => {
+    api
+      .getPosts()
+      .then((result) => {
+        setPosts(result.reverse());
+      })
+      .catch((err) => alert(err));
+  };
 
   useEffect(() => {
-    getPost()
+    getPost();
   }, []);
 
   useEffect(() => {
-    api.getUserInfo().then((result) => {
-      setUserInfo(result);
-    });
+    api
+      .getUserInfo()
+      .then((result) => {
+        setUserInfo(result);
+      })
+      .catch((err) => alert(err));
   }, []);
-
-
 
   return (
     <div>
@@ -54,37 +56,31 @@ function App() {
         <GlobalStyles />
         <PostContext.Provider value={{ posts, setPosts }}>
           <UserContext.Provider value={{ userInfo, setUserInfo }}>
-
             <Header userInfo={userInfo} />
 
             <Routes>
               <Route
                 path="/"
-                element={<div >
-                  <Greeting switchTheme={switchTheme} />
-                  <Fragment>
-                    <ScrollButton />
-                  </Fragment>
-                  <PostList
-                    mapPosts={posts}
-                    like={like}
-                    setLike={setLike}
-                    userInfo={userInfo}
-
-                    getPost={getPost}
-
-                  />
-                </div>
+                element={
+                  <div>
+                    <Greeting switchTheme={switchTheme} />
+                    <Fragment>
+                      <ScrollButton />
+                    </Fragment>
+                    <PostList
+                      mapPosts={posts}
+                      like={like}
+                      setLike={setLike}
+                      userInfo={userInfo}
+                      getPost={getPost}
+                    />
+                  </div>
                 }
               />
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
-
-
-              <Route path="posts/:postID/info" element={<UserInfo/>}/>
-
+              <Route path="users/:userID" element={<UserInfo />} />
             </Routes>
-
             <Footer />
           </UserContext.Provider>
         </PostContext.Provider>

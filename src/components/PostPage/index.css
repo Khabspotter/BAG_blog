@@ -9,6 +9,7 @@
     display: flex;
 justify-content: center;
 max-width: 900px;
+margin-bottom: 20px;
     } 
 
 .container{
@@ -55,10 +56,6 @@ cursor: pointer;
 
 .post{
     max-width: 70%;
-}
-
-.comments p{
-    line-height: 30%;
 }
 
 .avatar{
@@ -108,3 +105,7 @@ input:focus{
 
 }
 
+.comments{
+    max-width: 200px;
+    word-break:break-all;
+}
