@@ -69,20 +69,11 @@ select{
 margin:40px 0px 40px 0px;
 font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
-.loader-02 {
-	border: .2em solid transparent;
-	border-left-color: currentcolor;
-	border-right-color: currentcolor;
-	border-radius: 50%;
-	animation: 1s loader-02 linear infinite;
+.load{
+    font-size: x-large;
+    margin: 100px;
+    color: blue;
+    font-weight: 800;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
-@keyframes loader-02 {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
-}
+  

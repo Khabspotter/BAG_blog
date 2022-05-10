@@ -21,7 +21,7 @@ export const Header = ({
         <h1 onClick={() => navigate("/")}>BAG-blog</h1>
       </div>
       {token && (
-        <div className='textfield'>
+        <div className="textfield">
           <TextField
             variant="outlined"
             size="small"
@@ -36,9 +36,7 @@ export const Header = ({
       )}
 
       {token && (
-        <div
-          style={{ width: "200px" }}
-        >
+        <div style={{ width: "200px" }}>
           <div className="user" onClick={() => navigate(`user/edit`)}>
             <img src={userInfo.avatar} />
             <div className="userInfo">
@@ -53,32 +51,36 @@ export const Header = ({
         </div>
       )}
       <div>
-      <div style={{ display: "flex" }}>
-        {token && (
-          <button
-            className="createBut"
-            title="Создать пост"
-            onClick={() => navigate("create")}
-          >
-            +
-          </button>
-        )}
-        {token && (
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              setUserInfo([]);
-            }}
-          >
-            Выход
-          </button>
-        )}
-        <label title="Сменить тему">
-          <Switch className="switch" {...label} onClick={switchTheme} />
-          <br />
-          {theme == "light" ? <div>Темная тема</div> : <div>Светлая тема</div>}
-        </label>
-      </div>
+        <div style={{ display: "flex" }}>
+          {token && (
+            <button
+              className="createBut"
+              title="Создать пост"
+              onClick={() => navigate("create")}
+            >
+              +
+            </button>
+          )}
+          {token && (
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                setUserInfo([]);
+              }}
+            >
+              Выход
+            </button>
+          )}
+          <label title="Сменить тему">
+            <Switch className="switch" {...label} onClick={switchTheme} />
+            <br />
+            {theme == "light" ? (
+              <div>Темная тема</div>
+            ) : (
+              <div>Светлая тема</div>
+            )}
+          </label>
+        </div>
       </div>
     </div>
   );

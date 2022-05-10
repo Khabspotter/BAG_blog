@@ -28,8 +28,9 @@ function App() {
   const [like, setLike] = useState(JSON.parse(localStorage.getItem("likes")));
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("light");
+  const [isLoaded, setIsLoaded] = useState(false);
   const api = useApi();
-  const {readLS}=useLocalStorage();
+  const { readLS } = useLocalStorage();
   const switchTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
@@ -39,9 +40,13 @@ function App() {
     api
       .getPosts()
       .then((result) => {
+        setIsLoaded(true);
         setPosts(result.reverse());
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsLoaded(true);
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -94,6 +99,7 @@ function App() {
                       <PostList
                         like={like}
                         setLike={setLike}
+                        isLoaded={isLoaded}
                         userInfo={userInfo}
                         getPost={getPost}
                       />
