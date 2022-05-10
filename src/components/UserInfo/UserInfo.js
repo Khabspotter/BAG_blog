@@ -5,14 +5,16 @@ import "./style.css";
 
 export const UserInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const api=useApi()
+  const api = useApi();
 
   useEffect(() => {
     api
       .getUsers(params.userID)
       .then((data) => {
+        setIsLoaded(true);
         setUserInfo(data);
       })
       .catch((err) => alert(err));
@@ -20,25 +22,29 @@ export const UserInfo = () => {
 
   return (
     <div className="userpage">
+      
       <div className="buttons">
         <div>
           <button onClick={() => window.history.back()}>Назад</button>
           <button onClick={() => navigate("/")}>На главную</button>
         </div>
       </div>
+      {(!isLoaded) ? (
+    <div className="load">Загрузка...</div>
+  ) : (
       <div className="usercard">
         <div className="username">{userInfo?.name}</div>
         <div>
           <img style={{ maxWidth: 600 }} src={userInfo?.avatar} />
         </div>
-        <div style={{display:"flex"}}>
+        <div style={{ display: "flex" }}>
           <div className="desc">Род деятельности:</div> {userInfo?.about}
         </div>
-        <div style={{display:"flex"}}>
+        <div style={{ display: "flex" }}>
           <div className="desc">E-mail: </div>
           {userInfo?.email}
         </div>
-      </div>
+      </div>)}
     </div>
   );
 };

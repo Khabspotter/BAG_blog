@@ -9,17 +9,17 @@ import IconButton from "@mui/material/IconButton";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import UserContext from "../Contexts/userContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 export const PostPage = () => {
   const { userInfo, setUserInfo } = useContext(UserContext);
   const { posts, setPosts } = useContext(PostContext);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const { writeLS } = useLocalStorage();
-  const api=useApi()
+  const api = useApi();
   const deletePost = () => {
     api
       .deletePosts(params.postID)
@@ -32,21 +32,21 @@ export const PostPage = () => {
       .catch((err) => alert(err));
   };
 
-
-
   const navigateToEditPage = () => {
-    navigate(`edit`)
-  }
-
-
+    navigate(`edit`);
+  };
 
   useEffect(() => {
     api
       .getPosts(params.postID)
       .then((data) => {
+        setIsLoaded(true);
         setPost(data);
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        setIsLoaded(true);
+        alert(err);
+      });
   }, []);
 
   useEffect(() => {
@@ -91,90 +91,105 @@ export const PostPage = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div className="container">
-        <button className="back" onClick={() => navigate("/")}>
-          Назад
-        </button>
-        <div className="postpage">
-          <div className="page">
-            <div className="post">
-              <div className="title">{post?.title}</div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div className="author">
-                  <img className="avatar" src={`${post?.author.avatar}`} />
-                  <div>
-                    <div
-                      className="author_name"
-                      onClick={() => navigate(`/users/${post?.author._id}`)}
-                    >
-                      {post?.author.name}
-                    </div>
-
-                    <p className="date">
-                      {dayjs(post?.created_at).format("DD.MM.YYYY, HH:mm:ss")}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  {userInfo._id == post?.author._id && (
-                    <IconButton onClick={deletePost} title="Удалить пост">
-                      <DeleteOutlinedIcon />
-                    </IconButton>
-                  )}
-
-                  {userInfo._id == post?.author._id && (
-                    <IconButton onClick={navigateToEditPage}>
-                      <EditIcon />
-                    </IconButton>
-                  )}
-
-                </div>
-              </div>
-              <div>
-                <img className="image" src={post?.image} />
-              </div>
-              <div className="post_text">{post?.text}</div>
-            </div>
-            <div className="comments">
-              {comments?.map((el) => (
-                <div key={el._id}>
-                  <div style={{ display: "flex" }}>
-                    <div className="author">
-                      <img className="avatar" src={`${el.author.avatar}`} />
-                      <div>
-                        <div className="author_name" onClick={() => navigate(`/users/${el?.author._id}`)}>{el.author.name}</div>
-                        <div className="date">
-                          {dayjs(el.created_at).format("DD.MM.YYYY, HH:mm:ss")}
-                        </div>
+      {!isLoaded ? (
+        <div className="load">Загрузка...</div>
+      ) : (
+        <div className="container">
+          <button className="back" onClick={() => navigate("/")}>
+            Назад
+          </button>
+          <div className="postpage">
+            <div className="page">
+              <div className="post">
+                <div className="title">{post?.title}</div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div className="author">
+                    <img className="avatar" src={`${post?.author.avatar}`} />
+                    <div>
+                      <div
+                        className="author_name"
+                        onClick={() => navigate(`/users/${post?.author._id}`)}
+                      >
+                        {post?.author.name}
                       </div>
+
+                      <p className="date">
+                        {dayjs(post?.created_at).format("DD.MM.YYYY, HH:mm:ss")}
+                      </p>
                     </div>
-                    {userInfo._id == el.author._id && (
-                      <IconButton onClick={() => deleteComment(el._id)}>
-                        <DeleteOutlinedIcon sx={{ fontSize: 15 }} />
+                  </div>
+                  <div>
+                    {userInfo._id == post?.author._id && (
+                      <IconButton onClick={deletePost} title="Удалить пост">
+                        <DeleteOutlinedIcon />
+                      </IconButton>
+                    )}
+
+                    {userInfo._id == post?.author._id && (
+                      <IconButton onClick={navigateToEditPage}>
+                        <EditIcon />
                       </IconButton>
                     )}
                   </div>
-                  <div className="post_text">{el.text}</div>
-                  <hr />
                 </div>
-              ))}
-              <div>
-                <form
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                  onSubmit={handleSubmit}
-                >
-                  <input name="new_comment" placeholder="Введите комментарий" />
-                  <button>Опубликовать</button>
-                </form>
+                <div>
+                  <img className="image" src={post?.image} />
+                </div>
+                <div className="post_text">{post?.text}</div>
+              </div>
+              <div className="comments">
+                {comments?.map((el) => (
+                  <div key={el._id}>
+                    <div style={{ display: "flex" }}>
+                      <div className="author">
+                        <img className="avatar" src={`${el.author.avatar}`} />
+                        <div>
+                          <div
+                            className="author_name"
+                            onClick={() => navigate(`/users/${el?.author._id}`)}
+                          >
+                            {el.author.name}
+                          </div>
+                          <div className="date">
+                            {dayjs(el.created_at).format(
+                              "DD.MM.YYYY, HH:mm:ss"
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      {userInfo._id == el.author._id && (
+                        <IconButton onClick={() => deleteComment(el._id)}>
+                          <DeleteOutlinedIcon sx={{ fontSize: 15 }} />
+                        </IconButton>
+                      )}
+                    </div>
+                    <div className="post_text">{el.text}</div>
+                    <hr />
+                  </div>
+                ))}
+                <div>
+                  <form
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                    onSubmit={handleSubmit}
+                  >
+                    <input
+                      name="new_comment"
+                      placeholder="Введите комментарий"
+                    />
+                    <button>Опубликовать</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

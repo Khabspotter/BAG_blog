@@ -15,13 +15,13 @@ import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PostContext from "../Contexts/postContext";
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
-  const { posts,setPosts } = useContext(PostContext);
-  const params=useParams()
-  const api=useApi()
+  const { posts, setPosts } = useContext(PostContext);
+  const params = useParams();
+  const api = useApi();
   const [liked, setLiked] = useState(postsKey.likes.length);
-useEffect(()=>{
-  setLiked(postsKey.likes.length)
-},[postsKey.likes.length])
+  useEffect(() => {
+    setLiked(postsKey.likes.length);
+  }, [postsKey.likes.length]);
   const navigate = useNavigate();
 
   const addLS = (key, value) => {
@@ -95,7 +95,6 @@ useEffect(()=>{
             {" "}
             👤 {postsKey.author.name}{" "}
           </Link>
-
         </Typography>
         <br />
         <CardMedia
@@ -105,7 +104,9 @@ useEffect(()=>{
           alt="Изображение"
         />
         <br />
-        <Typography variant="body2">{postsKey.text}</Typography>
+        <div style={{ height: "60px", overflow: "hidden" }}>
+          <Typography variant="body2">{postsKey.text}</Typography>
+        </div>
         <br />
         <Typography variant="h8" color="text.secondary">
           {dayjs(postsKey.created_at).format("DD.MM.YYYY, HH:mm:ss")}

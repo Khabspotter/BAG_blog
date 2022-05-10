@@ -46,23 +46,16 @@
   cursor: pointer;
 background-color: rgb(255, 255, 255);
 border-radius: 42px;
-transition: right 1s linear;
+transition: 0.5s linear;
+padding:5px 5px 5px 10px
 
 }
 
 .user:hover{
   background-color: rgb(199, 205, 255);
-  padding:5px 5px 5px 10px
-
-  }
-
-  .user:hover .userInfo{
-    display: block;
-    float: right;
   }
 
 .userInfo{
-  display: none;
   margin:5px
 }
 

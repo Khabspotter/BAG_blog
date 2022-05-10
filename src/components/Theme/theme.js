@@ -67,7 +67,12 @@ export const darkTheme = {
     transition: .3s ease; 
    }
 
-  createBut{
+  .createBut{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+  }
+.user{
     background: ${props => props.theme.body};
     color: ${props => props.theme.textColor};
     transition: .3s ease; 
