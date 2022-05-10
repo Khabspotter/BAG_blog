@@ -104,7 +104,7 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
           alt="Изображение"
         />
         <br />
-        <div style={{ height: "60px", overflow: "hidden" }}>
+        <div style={{ maxHeight: "60px", overflow: "hidden" }}>
           <Typography variant="body2">{postsKey.text}</Typography>
         </div>
         <br />
