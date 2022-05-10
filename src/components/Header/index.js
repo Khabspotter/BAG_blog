@@ -72,7 +72,7 @@ export const Header = ({
             </button>
           )}
           <label title="Сменить тему">
-            <Switch className="switch" {...label} onClick={switchTheme} />
+            <Switch className="switch"  onClick={switchTheme} />
             <br />
             {theme == "light" ? (
               <div>Темная тема</div>

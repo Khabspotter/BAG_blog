@@ -5,7 +5,7 @@
     align-items: center;
     height:150px;
     width: 950px;
-    background-color: rgb(199, 205, 255);
+    background: linear-gradient(rgb(170, 179, 255), rgba(250, 112, 112, 0.63));
 border-radius: 50px;
 }
 

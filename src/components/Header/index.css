@@ -1,10 +1,13 @@
 .header {
   display: flex;
+  position: sticky;
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px grey solid;
   padding:10px;
-  height:45px
+  height:45px;
+  background: linear-gradient(rgb(0, 22, 223), rgb(0, 192, 144));
+  
 }
 
 .logo {

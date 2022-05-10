@@ -1,6 +1,6 @@
 import {createGlobalStyle} from "styled-components"
 export const darkTheme = {
-    body: "rgba(000, 000, 000, 0.95)" ,
+    body: "rgba(000, 000, 000, 0.95)" , 
     textColor: "#fff",
     headingColor: "#d23669",
     
@@ -73,6 +73,11 @@ export const darkTheme = {
     transition: .3s ease; 
   }
 .user{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+  }
+  .sign input{
     background: ${props => props.theme.body};
     color: ${props => props.theme.textColor};
     transition: .3s ease; 

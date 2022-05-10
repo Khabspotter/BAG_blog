@@ -28,7 +28,7 @@ export const SignIn = ({ setUserInfo }) => {
   };
 
   return (
-    <div
+    <div className="sign"
       style={{
         display: "flex",
         justifyContent: "center",
