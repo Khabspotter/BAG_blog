@@ -35,6 +35,7 @@ export const SignUp = (setUserInfo) => {
 
   return (
     <div
+    className="sign"
       style={{
         display: "flex",
         justifyContent: "center",
