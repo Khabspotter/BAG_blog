@@ -46,7 +46,7 @@ function App() {
 
   useEffect(() => {
     getPost();
-  }, [userInfo]);
+  }, []);
 
   useEffect(() => {
     api
@@ -55,7 +55,7 @@ function App() {
         setUserInfo(result);
       })
       .catch((err) => console.log(err));
-  }, [userInfo]);
+  }, []);
 
   useEffect(() => {
     api
