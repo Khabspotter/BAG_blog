@@ -1,5 +1,3 @@
-import { config } from "./config";
-
 const onResponce = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
@@ -116,6 +114,54 @@ class Api {
     }).then(onResponce);
   }
 
+  getSearch(query){
+    return fetch(`${this._url}/posts/search/?query=${query}`, {
+      headers: {
+        authorization: `Bearer ${this._token}`,
+      },
+    }).then(onResponce);
+  }
+
+  editUser(freshItem) {
+    return fetch(`${this._url}/users/me `, {
+        method: 'PATCH',
+        headers: {
+            authorization: `Bearer ${this._token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(freshItem),
+    }).then(onResponce);
+}
+editUserAvatar(freshItem) {
+  return fetch(`${this._url}/users/me/avatar `, {
+      method: 'PATCH',
+      headers: {
+          authorization: `Bearer ${this._token}`,
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(freshItem),
+  }).then(onResponce);
 }
 
-export default new Api(config);
+signUp(userData){
+  return fetch(`${this._url}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  }).then(onResponce);
+}
+
+signIn(userData){
+  return fetch(`${this._url}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  }).then(onResponce);
+}
+}
+
+export default Api;

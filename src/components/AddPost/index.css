@@ -11,8 +11,13 @@
 
 }
 
+.createcard{
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+    padding: 20px;
+    margin: 20px;
+}
+
 .create input:hover {
-    color: blue;
     border-color: blue;
 }
 
