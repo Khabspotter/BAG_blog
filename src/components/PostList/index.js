@@ -22,6 +22,7 @@ export const PostList = ({ like, setLike, userInfo, getPost, isLoaded }) => {
         }),
       ];
     });
+    setButtonClick(1);
     navigate("/");
   };
   const mostComment = () => {
@@ -30,6 +31,7 @@ export const PostList = ({ like, setLike, userInfo, getPost, isLoaded }) => {
         return b.comments.length - a.comments.length;
       })
     );
+    setButtonClick(1);
     navigate("/");
   };
   const newAdded = () => {
@@ -39,8 +41,9 @@ export const PostList = ({ like, setLike, userInfo, getPost, isLoaded }) => {
           dayjs(b.created_at).format("YYYYMMDDHHmmss") -
           dayjs(a.created_at).format("YYYYMMDDHHmmss")
         );
+        
       })
-    );
+    );setButtonClick(1);
     navigate("/");
   };
   const oldAdded = () => {
@@ -52,6 +55,7 @@ export const PostList = ({ like, setLike, userInfo, getPost, isLoaded }) => {
         );
       })
     );
+    setButtonClick(1);
     navigate("/");
   };
 
