@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export const SignUp = (setUserInfo) => {
+export const SignUp = ({setUserInfo}) => {
   const api = useApi();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,10 +27,10 @@ export const SignUp = (setUserInfo) => {
   const signUp = () => {
     api
       .signUp({ email, password })
-      .then((createdUser) => {
+      .then((createdUser) => {navigate("/");
         return api.signIn({ email, password });
       })
-      .then(onSignIn);
+      .then(onSignIn).catch(err=>console.log(err))
   };
 
   return (
