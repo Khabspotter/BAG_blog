@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
     getPost();
-  }, []);
+  }, [userInfo]);
 
   useEffect(() => {
     api
