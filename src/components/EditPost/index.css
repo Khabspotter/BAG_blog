@@ -1,8 +1,10 @@
 .edit {
     display: flex;
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
     justify-content: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 
 .edit input {
     width: 500px;
@@ -12,17 +14,21 @@
 }
 
 .edit input:hover {
-    color: blue;
+    
     border-color: blue;
 }
 
-.edit form {
-    gap: 15px;
+.edit div {
+
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-}
 
+}
+.cardedit{
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+    margin:20px;
+    padding: 20px;
+}
 .edit button {
     text-align: center;
     margin:30px;

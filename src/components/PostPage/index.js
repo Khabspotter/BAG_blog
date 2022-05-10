@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import api from "../../utils/api";
+import { useApi } from "../hooks/useApi";
 import dayjs from "dayjs";
 import "./index.css";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -19,7 +19,7 @@ export const PostPage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { writeLS } = useLocalStorage();
-
+  const api=useApi()
   const deletePost = () => {
     api
       .deletePosts(params.postID)

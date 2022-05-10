@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../../utils/api";
+import { useApi } from "../hooks/useApi";
 import "./style.css";
 
 export const UserInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
+  const api=useApi()
 
   useEffect(() => {
     api

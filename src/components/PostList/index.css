@@ -25,15 +25,10 @@
     max-width: 900px;
     margin-top: 20px;
     margin-bottom: 20px;
+    display:flex;
+    justify-content: center;
 }
 
-.buttonBlock button{
-    border-radius: 50%;
-    width:32px;
-    height: 32px;
-    text-decoration: dashed;
-    padding:0%
-}
 .select{
     max-width: 900px;
     display:flex;
@@ -62,4 +57,32 @@ select{
 }
 .link:hover{
     opacity: 100%;
+}
+
+.badreq{
+    width: 800px;
+    height: 23vh;
+    display: flex;
+    justify-content: space-around;
+    font-size: x-large;
+    font-weight: 800;
+margin:40px 0px 40px 0px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.loader-02 {
+	border: .2em solid transparent;
+	border-left-color: currentcolor;
+	border-right-color: currentcolor;
+	border-radius: 50%;
+	animation: 1s loader-02 linear infinite;
+}
+
+@keyframes loader-02 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

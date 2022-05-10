@@ -10,24 +10,30 @@ import { Routes, Route } from "react-router-dom";
 import { PostPage } from "./components/PostPage";
 import PostContext from "./components/Contexts/postContext";
 import UserContext from "./components/Contexts/userContext";
-
 import { Fragment } from "react";
 import ScrollButton from "./components/ScrollTop/ScrollButton";
-
+import { EditUser } from "./components/EditUser";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./components/Theme/theme";
 import { UserInfo } from "./components/UserInfo/UserInfo";
 import { EditPost } from "./components/EditPost";
+import { SignUp } from "./components/SignUp";
+import { SignIn } from "./components/SignIn";
+import { useApi } from "./components/hooks/useApi";
+import { useLocalStorage } from "./components/hooks/useLocalStorage";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [like, setLike] = useState(JSON.parse(localStorage.getItem("likes")));
-
+  const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("light");
+  const api = useApi();
+  const {readLS}=useLocalStorage();
   const switchTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
+  const token = readLS("token");
 
   const getPost = () => {
     api
@@ -35,12 +41,12 @@ function App() {
       .then((result) => {
         setPosts(result.reverse());
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     getPost();
-  }, []);
+  }, [userInfo]);
 
   useEffect(() => {
     api
@@ -48,8 +54,17 @@ function App() {
       .then((result) => {
         setUserInfo(result);
       })
-      .catch((err) => alert(err));
-  }, []);
+      .catch((err) => console.log(err));
+  }, [userInfo]);
+
+  useEffect(() => {
+    api
+      .getSearch(query)
+      .then((result) => {
+        setPosts(result.reverse());
+      })
+      .catch((err) => console.log(err));
+  }, [query]);
 
   return (
     <div>
@@ -57,33 +72,56 @@ function App() {
         <GlobalStyles />
         <PostContext.Provider value={{ posts, setPosts }}>
           <UserContext.Provider value={{ userInfo, setUserInfo }}>
-            <Header userInfo={userInfo} />
+            <Header
+              userInfo={userInfo}
+              switchTheme={switchTheme}
+              setQuery={setQuery}
+              theme={theme}
+              token={token}
+              setUserInfo={setUserInfo}
+            />
 
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <div>
-                    <Greeting switchTheme={switchTheme} />
-                    <Fragment>
-                      <ScrollButton />
-                    </Fragment>
-                    <PostList
-                      mapPosts={posts}
-                      like={like}
-                      setLike={setLike}
-                      userInfo={userInfo}
-                    />
-                  </div>
-                }
-              />
+              {token ? (
+                <Route
+                  path="/"
+                  element={
+                    <div>
+                      <Greeting switchTheme={switchTheme} />
+                      <Fragment>
+                        <ScrollButton />
+                      </Fragment>
+                      <PostList
+                        like={like}
+                        setLike={setLike}
+                        userInfo={userInfo}
+                        getPost={getPost}
+                      />
+                    </div>
+                  }
+                />
+              ) : (
+                <Route
+                  path="/"
+                  element={<SignIn setUserInfo={setUserInfo} />}
+                />
+              )}
               <Route path="create" element={<AddPost />} />
               <Route path="posts/:postID" element={<PostPage />} />
               <Route path="posts/:postID/edit" element={<EditPost />} />
-
-
-              <Route path="posts/:postID/info" element={<UserInfo/>}/>
+              <Route
+                path="user/edit"
+                element={
+                  <EditUser userInfo={userInfo} setUserInfo={setUserInfo} />
+                }
+              />
+              <Route path="posts/:postID/info" element={<UserInfo />} />
               <Route path="users/:userID" element={<UserInfo />} />
+
+              <Route
+                path="users/signup"
+                element={<SignUp setUserInfo={setUserInfo} />}
+              />
             </Routes>
             <Footer />
           </UserContext.Provider>
