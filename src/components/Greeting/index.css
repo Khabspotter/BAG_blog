@@ -1,11 +1,17 @@
 .greeting {
     display:flex;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 20px 200px;
-    line-height: 95%;
-    background-color: rgb(199, 205, 255);
-padding:30px;
+    height:150px;
+    width: 950px;
+    background: linear-gradient(rgb(170, 179, 255), rgba(250, 112, 112, 0.63));
 border-radius: 50px;
+}
+
+
+.greetingCont{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }

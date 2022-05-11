@@ -3,69 +3,60 @@ import { Post } from "../Post";
 import "./index.css";
 import { useContext } from "react";
 import PostContext from "../Contexts/postContext";
-import { Navigate, useNavigate } from "react-router-dom";
-import api from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+import { useApi } from "../hooks/useApi";
+import Pagination from "@mui/material/Pagination";
+import dayjs from "dayjs";
 
-export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
+export const PostList = ({ like, setLike, userInfo, getPost, isLoaded }) => {
   const [buttonClick, setButtonClick] = useState(1);
-  const { setPosts } = useContext(PostContext);
+  const [pageItems, setPageItems] = useState(12);
+  const { posts, setPosts } = useContext(PostContext);
   const navigate = useNavigate();
-
-  const buttonBlock = () => {
-    const buttonList = [];
-    const buttonNum = Math.ceil(mapPosts.length / 12);
-    for (let i = 1; i <= buttonNum; i++) {
-      buttonList.push(
-        <button
-          className="numButton"
-          key={i}
-          onClick={() => {
-            setButtonClick(i);
-            window.scrollTo({
-              top: 0,
-
-              behavior: "smooth",
-            });
-          }}
-        >
-          {i}
-        </button>
-      );
-    }
-    return buttonList;
-  };
-
+  const api = useApi();
   const mostLiked = () => {
-    setPosts(
-      mapPosts.sort(function (a, b) {
-        return b.likes.length - a.likes.length;
-      })
-    );
+    setPosts((prevState) => {
+      return [
+        ...prevState.sort(function (a, b) {
+          return b.likes.length - a.likes.length;
+        }),
+      ];
+    });
+    setButtonClick(1);
     navigate("/");
   };
   const mostComment = () => {
     setPosts(
-      mapPosts.sort(function (a, b) {
+      posts.sort(function (a, b) {
         return b.comments.length - a.comments.length;
       })
     );
+    setButtonClick(1);
     navigate("/");
   };
   const newAdded = () => {
-    api
-      .getPosts()
-      .then((result) => {
-        setPosts(result.reverse());
+    setPosts(
+      posts.sort(function (a, b) {
+        return (
+          dayjs(b.created_at).format("YYYYMMDDHHmmss") -
+          dayjs(a.created_at).format("YYYYMMDDHHmmss")
+        );
+        
       })
-      .catch((err) => alert(err));
+    );setButtonClick(1);
+    navigate("/");
   };
   const oldAdded = () => {
-    api
-      .getPosts()
-      .then((result) => {
-        setPosts(result);
+    setPosts(
+      posts.sort(function (a, b) {
+        return (
+          dayjs(a.created_at).format("YYYYMMDDHHmmss") -
+          dayjs(b.created_at).format("YYYYMMDDHHmmss")
+        );
       })
-      .catch((err) => alert(err));
+    );
+    setButtonClick(1);
+    navigate("/");
   };
 
   function selectChanged(value) {
@@ -85,70 +76,174 @@ export const PostList = ({ mapPosts, like, setLike, userInfo, getPost }) => {
     }
   }
 
-  const myPosts = () => {api
-    .getPosts()
-    .then((result) => {
-      setPosts(result.reverse().filter((el) => userInfo._id == el.author._id));
-    })
-    .catch((err) => alert(err));
+  function selectPageItems(value) {
+    switch (value) {
+      case 6:
+        setPageItems(value);
+        break;
+      case 9:
+        setPageItems(value);
+        break;
+      case 12:
+        setPageItems(value);
+        break;
+      case 15:
+        setPageItems(value);
+        break;
+      case 18:
+        setPageItems(value);
+        break;
+    }
+  }
+
+  const myPosts = () => {
+    api
+      .getPosts()
+      .then((result) => {
+        setPosts(
+          result.reverse().filter((el) => userInfo._id == el.author._id)
+        );
+      })
+      .catch((err) => alert(err));
   };
 
-  const iLiked = () => {api
-    .getPosts()
-    .then((result) => {
-      setPosts(result.reverse().filter((el) => el.likes.includes(userInfo._id)));
-    })
-    .catch((err) => alert(err));
+  const iLiked = () => {
+    api
+      .getPosts()
+      .then((result) => {
+        setPosts(
+          result.reverse().filter((el) => el.likes.includes(userInfo._id))
+        );
+      })
+      .catch((err) => alert(err));
   };
 
-  const pageLimit = buttonClick * 12;
+  const pageQty = Math.ceil(posts.length / pageItems);
+  const pageLimit = buttonClick * pageItems;
   let data = null;
   buttonClick == 1
-    ? (data = mapPosts.slice(0, pageLimit))
-    : (data = mapPosts.slice(pageLimit - 12, pageLimit));
+    ? (data = posts.slice(0, pageLimit))
+    : (data = posts.slice(pageLimit - pageItems, pageLimit));
 
   return (
     <div>
       <div className="postContainer">
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div className="filter">
-            <div className="link" onClick={() => myPosts()}>
-              Мои посты
+          <div className="buttonBlock">
+            {pageQty > 1 && (
+              <Pagination
+                variant="outlined"
+                page={buttonClick}
+                color="primary"
+                count={pageQty}
+                onChange={(_, num) => {
+                  setButtonClick(num);
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+              />
+            )}
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              className="link"
+              onClick={() => {
+                getPost();
+                setButtonClick(1);
+              }}
+            >
+              Все посты
             </div>
-            <div className="link" onClick={() => iLiked()}>
-              Мне понравилось
-            </div>
-            <div className="select">
-              <select
-                defaultValue="default"
-                onChange={(event) => {
-                  selectChanged(Number(event.target.value));
+            <div className="filter">
+              <div
+                className="link"
+                onClick={() => {
+                  myPosts();
+                  setButtonClick(1);
                 }}
               >
-                <option value="default" disabled style={{ display: "none" }}>
-                  Сортировать:
-                </option>
-                <option value={1}>Наиболее популярные</option>
-                <option value={2}>Самые комментируемые</option>
-                <option value={3}>Сначала новые</option>
-                <option value={4}>Сначала старые</option>
-              </select>
+                Мои посты
+              </div>
+              <div
+                className="link"
+                onClick={() => {
+                  iLiked();
+                  setButtonClick(1);
+                }}
+              >
+                Мне понравилось
+              </div>
+              <div className="select">
+                <select
+                  defaultValue="default"
+                  onChange={(event) => {
+                    selectChanged(Number(event.target.value));
+                  }}
+                >
+                  <option value="default" disabled style={{ display: "none" }}>
+                    Сначала новые
+                  </option>
+                  <option value={1}>Наиболее популярные</option>
+                  <option value={2}>Самые комментируемые</option>
+                  <option value={3}>Сначала новые</option>
+                  <option value={4}>Сначала старые</option>
+                </select>
+                <div style={{ margin: "5px 10px 0px 10px" }}> по </div>
+                <select
+                  defaultValue="default"
+                  onChange={(event) => {
+                    selectPageItems(Number(event.target.value));
+                  }}
+                >
+                  <option value="default" disabled style={{ display: "none" }}>
+                    12
+                  </option>
+                  <option value={6}>6</option>
+                  <option value={9}>9</option>
+                  <option value={12}>12</option>
+                  <option value={15}>15</option>
+                  <option value={18}>18</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div className="postlist">
-            {data?.map((item, index) => (
-              <Post
-              
-                key={index}
-                postsKey={item}
-                userInfo={userInfo}
-                setLike={setLike}
-                isLiked={like?.includes(item._id)}
+          {!isLoaded ? (
+            <div className="load">Загрузка...</div>
+          ) : data.length ? (
+            <div className="postlist">
+              {data?.map((item, index) => (
+                <Post
+                  key={index}
+                  postsKey={item}
+                  userInfo={userInfo}
+                  setLike={setLike}
+                  isLiked={like?.includes(item._id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="postlist">
+              <div className="badreq">Ничего не нашлось ¯\_(ツ)_/¯</div>
+            </div>
+          )}
+          <div className="buttonBlock">
+            {pageQty > 1 && (
+              <Pagination
+                variant="outlined"
+                page={buttonClick}
+                color="primary"
+                count={pageQty}
+                onChange={(_, num) => {
+                  setButtonClick(num);
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
               />
-            ))}
-          </div>
-          <div>
-            <div className="buttonBlock">{buttonBlock(mapPosts)}</div>
+            )}
           </div>
         </div>
       </div>

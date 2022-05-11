@@ -1,18 +1,24 @@
-import React from 'react';
-import {Button} from '../Button';
-import './index.css'
+import React from "react";
+import { Button } from "../Button";
+import "./index.css";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
-export const Greeting = ({switchTheme}) => {
-  return (
-    <div className='greeting'>
-    <div>
-      <h2>Добро пожаловать в BAG-блог!</h2>
-      <p>Изучайте, развлекайтесь, создавайте, креативьте! 😃</p>
+export const Greeting = () => {
+  return (<div className="greetingCont">
+
+    <div className="greeting">
+      <div>
+        <div style={{fontSize:'x-large',color:'red',fontWeight:'800'}}>Добро пожаловать в BAG-блог!</div>
+        <div>Изучайте, развлекайтесь, создавайте, креативьте! 😃</div>
+      </div>
+      <div>
+        
+        <Button />
+      
     </div>
-    <div>
-      <Button />
-      <button className='createButton'  onClick={switchTheme}>Сменить тему</button>
+      <IconButton className='close' onClick={()=>{document.querySelector(".greetingCont").style.display = "none"}}>
+        <CloseIcon fontSize='small'/></IconButton></div>
     </div>
-    </div>
-  )
-}
+  );
+};

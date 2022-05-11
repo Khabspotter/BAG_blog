@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import dayjs from "dayjs";
 import IconButton from "@mui/material/IconButton";
-import api from "../../utils/api";
+import { useApi } from "../hooks/useApi";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CardMedia from "@mui/material/CardMedia";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,11 +15,13 @@ import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PostContext from "../Contexts/postContext";
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
-  const { setPosts } = useContext(PostContext);
-  const params=useParams()
-
+  const { posts, setPosts } = useContext(PostContext);
+  const params = useParams();
+  const api = useApi();
   const [liked, setLiked] = useState(postsKey.likes.length);
-
+  useEffect(() => {
+    setLiked(postsKey.likes.length);
+  }, [postsKey.likes.length]);
   const navigate = useNavigate();
 
   const addLS = (key, value) => {
@@ -68,7 +70,6 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
       })
       .catch((err) => alert(err));
   };
-
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -94,7 +95,6 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
             {" "}
             👤 {postsKey.author.name}{" "}
           </Link>
-
         </Typography>
         <br />
         <CardMedia
@@ -104,7 +104,9 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
           alt="Изображение"
         />
         <br />
-        <Typography variant="body2">{postsKey.text}</Typography>
+        <div style={{ maxHeight: "60px", overflow: "hidden" }}>
+          <Typography variant="body2">{postsKey.text}</Typography>
+        </div>
         <br />
         <Typography variant="h8" color="text.secondary">
           {dayjs(postsKey.created_at).format("DD.MM.YYYY, HH:mm:ss")}

@@ -1,10 +1,13 @@
 .header {
   display: flex;
+  position: sticky;
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px grey solid;
   padding:10px;
-  height:40px
+  height:45px;
+  background: linear-gradient(rgb(0, 22, 223), rgb(0, 192, 144));
+  
 }
 
 .logo {
@@ -38,22 +41,44 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  margin-right: 10px;
+
 }
 .user{
+  width: fit-content;
   display: flex;
   cursor: pointer;
 background-color: rgb(255, 255, 255);
-padding: 7px;
-border-radius: 20px;
+border-radius: 42px;
+transition: 0.5s linear;
+padding:5px 5px 5px 10px
+
 }
+
 .user:hover{
   background-color: rgb(199, 205, 255);
-}
+  }
+
 .userInfo{
-  margin-top: 5px;
+  margin:5px
 }
+
 h1{
   font-family:cursive;
   font-weight: 900;
+}
+label{
+  width:70px;
+  font-size: x-small;
+}
+
+.createBut{
+  font-size: xx-large;
+  border-radius: 25px;
+  color: grey;
+}
+.createBut:hover{
+  color:blue;
+}
+.textfield{
+  width:650px
 }

@@ -1,6 +1,6 @@
 import {createGlobalStyle} from "styled-components"
 export const darkTheme = {
-    body: "#000",
+    body: "rgba(000, 000, 000, 0.95)" , 
     textColor: "#fff",
     headingColor: "#d23669",
     
@@ -21,9 +21,9 @@ export const darkTheme = {
    h2{
      color: ${props => props.theme.headingColor};
    }
-   .createButton{
-    background: white;
-    color: black;
+   .header button{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
     transition: .3s ease; 
    }
    .links button{
@@ -31,14 +31,55 @@ export const darkTheme = {
     color: ${props => props.theme.body};
     transition: .3s ease; 
    }
-   .user {
-    background: ${props => props.theme.body};
-    transition: .3s ease; 
-   }
    .buttonBlock button{
     background: ${props => props.theme.body};
     color: ${props => props.theme.textColor};
     transition: .3s ease; 
    }
- 
+   .create input{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+   }
+   .create button{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; }
+
+    .createButton{
+      background: ${props => props.theme.body};
+      color: ${props => props.theme.textColor};
+      transition: .3s ease; 
+   }
+   .edit input{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+   }
+   card{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+   }
+   .header input{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+   }
+
+  .createBut{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+  }
+.user{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+  }
+  .sign input{
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.textColor};
+    transition: .3s ease; 
+  }
    `
