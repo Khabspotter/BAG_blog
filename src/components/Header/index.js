@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import Switch from "@mui/material/Switch";
 import { TextField } from "@mui/material";
+import { ReactComponent as CloseSearch } from '../../closeInput.svg';
+
+
 
 export const Header = ({
   userInfo,
   switchTheme,
   theme,
-  setQuery,
-  query,
   token,
   setUserInfo,
+  handleChange
 }) => {
+
+  const [searchText, setSearchText] = useState('')
+
+  const handleClick = () => {
+    setSearchText('')
+  }
+
+  useEffect(() => {
+    handleChange(searchText)
+
+  }, [searchText])
+
   const navigate = useNavigate();
   const label = { inputProps: { "aria-label": "Switch demo" } };
   return (
@@ -21,19 +35,22 @@ export const Header = ({
         <h1 onClick={() => navigate("/")}>BAG-blog</h1>
       </div>
       {token && (
-        <div className="textfield">
+        <div className="search">
           <TextField
             variant="outlined"
             size="small"
-            fullWidth
-            value={query}
+            sx={{ minWidth: 650 }}
+            value={searchText}
             placeholder="Поиск"
             onChange={(event) => {
-              setQuery(event.target.value);
+              setSearchText(event.target.value);
             }}
           />
+          <button className="search__btn">{searchText && <CloseSearch onClick={handleClick} />}</button>
+
         </div>
       )}
+
 
       {token && (
         <div style={{ width: "200px" }}>
@@ -72,7 +89,7 @@ export const Header = ({
             </button>
           )}
           <label title="Сменить тему">
-            <Switch className="switch"  onClick={switchTheme} />
+            <Switch className="switch" onClick={switchTheme} />
             <br />
             {theme == "light" ? (
               <div>Темная тема</div>

@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PostContext from "../Contexts/postContext";
+import './index.css'
 
 export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
   const { posts, setPosts } = useContext(PostContext);
@@ -71,7 +72,7 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
       .catch((err) => alert(err));
   };
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card className="card" sx={{ minWidth: 275 }}>
       <CardContent>
         <div
           onClick={() => navigate(`posts/${postsKey._id}`)}
@@ -116,29 +117,30 @@ export const Post = ({ postsKey, isLiked, setLike, userInfo }) => {
           Last edit {dayjs(postsKey.updated_at).format("DD.MM.YYYY, HH:mm:ss")}
         </Typography>
         <br />
-
-        {isLiked ? (
-          <IconButton onClick={removeLike}>
-            <FavoriteIcon fontSize="small" />
-            <p style={{ fontSize: "small" }}>{liked}</p>
-          </IconButton>
-        ) : (
-          <IconButton onClick={getLike}>
-            <FavoriteBorderIcon fontSize="small" />
-            {liked > 0 && <p style={{ fontSize: "small" }}>{liked}</p>}
-          </IconButton>
-        )}
-        {postsKey.comments.length > 0 && (
-          <IconButton onClick={() => navigate(`posts/${postsKey._id}`)}>
-            <ForumOutlinedIcon fontSize="small" />
-            <p style={{ fontSize: "small" }}>{postsKey.comments.length}</p>
-          </IconButton>
-        )}
-        {userInfo._id == postsKey.author._id && (
-          <IconButton onClick={deletePost}>
-            <DeleteOutlinedIcon />
-          </IconButton>
-        )}
+        <div className="like">
+          {isLiked ? (
+            <IconButton onClick={removeLike}>
+              <FavoriteIcon fontSize="small" />
+              <p style={{ fontSize: "small" }}>{liked}</p>
+            </IconButton>
+          ) : (
+            <IconButton onClick={getLike}>
+              <FavoriteBorderIcon fontSize="small" />
+              {liked > 0 && <p style={{ fontSize: "small" }}>{liked}</p>}
+            </IconButton>
+          )}
+          {postsKey.comments.length > 0 && (
+            <IconButton onClick={() => navigate(`posts/${postsKey._id}`)}>
+              <ForumOutlinedIcon fontSize="small" />
+              <p style={{ fontSize: "small" }}>{postsKey.comments.length}</p>
+            </IconButton>
+          )}
+          {userInfo._id == postsKey.author._id && (
+            <IconButton onClick={deletePost}>
+              <DeleteOutlinedIcon />
+            </IconButton>
+          )}
+          </div>
       </CardContent>
     </Card>
   );

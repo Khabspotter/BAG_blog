@@ -36,6 +36,10 @@ function App() {
   };
   const token = readLS("token");
 
+  const handleChange = (value) => {
+    setQuery(value)
+  }
+
   const getPost = () => {
     api
       .getPosts()
@@ -80,10 +84,10 @@ function App() {
             <Header
               userInfo={userInfo}
               switchTheme={switchTheme}
-              setQuery={setQuery}
               theme={theme}
               token={token}
               setUserInfo={setUserInfo}
+              handleChange={handleChange}
             />
 
             <Routes>
