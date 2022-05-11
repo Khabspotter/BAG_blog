@@ -1,0 +1,15 @@
+.card {
+    position: relative;
+    padding-bottom: 50px;
+    background: linear-gradient(rgb(170, 179, 255), rgba(250, 112, 112, 0.63))
+}
+
+.card:hover {
+    box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16);
+}
+
+.like {
+
+    position: absolute;
+    bottom: 0;
+}
