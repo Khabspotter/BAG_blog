@@ -24,7 +24,7 @@ export const SignIn = ({ setUserInfo }) => {
   };
 
   const signIn = () => {
-    api.signIn({ email, password }).then(onSignIn);
+    api.signIn({ email, password }).then(onSignIn).catch((err) => alert("Неправильный e-mail или пароль!"));
   };
 
   return (
