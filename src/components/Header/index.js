@@ -82,7 +82,7 @@ export const Header = ({
             <button
               onClick={() => {
                 localStorage.removeItem("token");
-                setUserInfo([]);
+                setUserInfo([]);navigate("/");
               }}
             >
               Выход

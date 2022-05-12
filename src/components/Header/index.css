@@ -1,13 +1,12 @@
 .header {
   display: flex;
-  margin: 0;
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px grey solid;
   padding:10px;
   height:45px;
   background: linear-gradient(rgb(0, 22, 223), rgb(0, 192, 144));
-  
+  margin: 0px;
 }
 
 .logo {
@@ -78,20 +77,12 @@ label{
 }
 .createBut:hover{
   color:blue;
-}
-/* .textfield{
-  display: flex;
-  align-items: center;
-  width:650px
-} */
-
-
+} 
 
 .search {
 	display: flex;
 	align-items: center;
 	position: relative;
-	/* flex: 1; */
   width: 650px;
 }
 

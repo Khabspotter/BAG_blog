@@ -37,7 +37,7 @@ export const EditUser = ({ userInfo, setUserInfo }) => {
       setName(data.name);
       setAbout(data.about);
       setAvatar(data.avatar);
-    });
+    }).catch((err) => alert(err));
   }, []);
 
   return (

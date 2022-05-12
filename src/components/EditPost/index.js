@@ -35,7 +35,7 @@ export const EditPost = () => {
       setImage(data.image);
       setTitle(data.title);
       setText(data.text);
-    });
+    }).catch((err) => alert(err));
   }, []);
 
   return (

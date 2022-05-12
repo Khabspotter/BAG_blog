@@ -4,12 +4,11 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-export const SignUp = ({setUserInfo}) => {
+export const SignUp = ({ setUserInfo }) => {
   const api = useApi();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleEmailChange = ({ target }) => {
     setEmail(target.value.toLowerCase());
@@ -27,15 +26,18 @@ export const SignUp = ({setUserInfo}) => {
   const signUp = () => {
     api
       .signUp({ email, password })
-      .then((createdUser) => {navigate("/");
+      .then((createdUser) => {
+        navigate("/");
+        alert("Регистрация прошла успешно!");
         return api.signIn({ email, password });
       })
-      .then(onSignIn).catch(err=>console.log(err))
+      .then(onSignIn)
+      .catch((err) => alert("Пользователь с таким e-mail уже существует!"));
   };
 
   return (
     <div
-    className="sign"
+      className="sign"
       style={{
         display: "flex",
         justifyContent: "center",
@@ -43,7 +45,6 @@ export const SignUp = ({setUserInfo}) => {
         height: "80vh",
       }}
     >
-        
       <div style={{ width: "400px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
           <TextField
@@ -75,9 +76,9 @@ export const SignUp = ({setUserInfo}) => {
           <button style={{ width: "45%" }} onClick={signUp}>
             Регистрация
           </button>
-          <button style={{margin:'5px'}} onClick={() => navigate("/")}>
-          Назад
-        </button>
+          <button style={{ margin: "5px" }} onClick={() => navigate("/")}>
+            Назад
+          </button>
         </div>
       </div>
     </div>
